@@ -11,10 +11,27 @@
 </head>
 
 <body>
-  <div class="container">
-    <p class="fsize">Login</p>  
+
+  <header class="header">
+    <div class="logo-nav">
+        <a href="../main_page/index.html" class="logo">
+          <img src="../img/minecraft_title.png" alt="Hama Logo" />
+        </a>
+    </div>
+    <div class="header-title">
+        <h1>Login Page</h1>
+    </div>
+</header>
+
+
+  <div class="input_container">
+    
     <input type="text" id="email" placeholder="email">
     <input type="password" id="password" placeholder="password">
+  </div>
+
+  <div class="button_container">
+
     <input class="fsize_Login_button" type="button" value="Login" onclick="Login();">
     <input type="button" value="Sign Up" onclick="window.location.href='signup.html';">
   </div>

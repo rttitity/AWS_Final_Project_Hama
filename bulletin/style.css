@@ -54,7 +54,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #fff;
-	background-image: url('./img/Dirt_background.webp');
+	background-image: url('../img/Dirt_background.webp');
     
     margin: 0;
     padding: 0;
@@ -111,7 +111,7 @@ body {
     width: 500px;
     margin: 20px auto;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.9); /* 검은 배경 */
+    
     
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 약간의 그림자 */
 }
@@ -128,9 +128,13 @@ body {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #000; /* Minecraft 테두리 */
-    box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7; /* Minecraft 텍스트 박스 상자 */
-    background-color: #333; /* 어두운 배경색 */
+    height: 64px; /* 고정된 높이로 다른 input과 동일하게 */
+    box-sizing: border-box; /* 테두리와 패딩을 포함한 높이 계산 */
+
+
+    border: 2px solid #ffffff; /* Minecraft 테두리 */
+    box-shadow: inset -2px -4px #0006; /* Minecraft 텍스트 박스 상자 */
+    background-color: #000000; /* 어두운 배경색 */
     color: #DDD; /* 텍스트 색상 */
     font-family: 'Minecraftia', sans-serif;
     text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
@@ -139,6 +143,89 @@ body {
 
 .minecraft-console input[type="text"]::placeholder {
     color: #888; /* 플레이스홀더 텍스트 색상 */
+}
+
+/* 숨겨진 파일 입력 필드 */
+.minecraft-console input[type="file"] {
+    display: none; /* 파일 입력 버튼 숨기기 */
+}
+
+/* 커스텀 파일 선택 버튼 스타일 */
+.custom-file-label {
+    display: inline-block;
+	width: 47px;
+    padding: 10px; /* 입력 필드와 동일한 패딩 */
+	cursor: pointer;
+    height: 45px; /* 고정된 높이로 다른 input과 동일하게 */
+    
+
+
+	overflow: hidden;
+	white-space: nowrap;
+	user-select: none;
+	background: #999 url('https://i.ibb.co/rb2TWXL/bgbtn.png') center / cover;
+	image-rendering: pixelated;
+	border: 2px solid #ffffff;
+    font-family: 'Minecraftia', sans-serif;
+    color: #DDD; /* 텍스트 색상 */
+	text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
+	box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7; /* 텍스트 상자 */
+    
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+}
+
+/* 커스텀 파일 선택 버튼 Hover 시 스타일 */
+.custom-file-label:hover {
+    background-image: none;  /* 기존 이미지 제거 */
+    background-color: rgba(100, 100, 255, .6);
+	text-shadow: 2px 2px #202013CC;
+	color: #FFFFA0;
+}
+
+/* 파일 선택 버튼 클릭 시 스타일 */
+.custom-file-label:active {
+    box-shadow: inset -2px -4px #0004, inset 2px 2px #FFF5;
+}
+
+/* 이미지 스타일 */
+.Painting-emoji {
+    max-height: 100%; /* 버튼 높이에 맞게 이미지 높이 조정 */
+    max-width: 100%; /* 버튼 너비에 맞게 이미지 너비 조정 */
+    object-fit: contain; /* 이미지 비율 유지하면서 전체가 보이도록 */
+}
+
+.file-name {
+    flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
+    flex-basis: auto;
+
+    display: flex; /* Flexbox로 설정 */
+    align-items: center; /* 세로 중앙 정렬 */
+    
+    font-size: 16px;
+    height: 64px; /* 고정된 높이로 다른 input과 동일하게 */
+
+    padding-left: 10px; /* 텍스트와 왼쪽의 간격 조정 */
+    padding-right: 20px; /* 오른쪽 간격을 벌림 */
+    
+
+    border: 2px solid #ffffff; /* Minecraft 테두리 */
+    box-shadow: inset -2px -4px #0006; /* Minecraft 텍스트 박스 상자 */
+    background-color: #000000; /* 어두운 배경색 */
+    color: #DDD; /* 텍스트 색상 */
+    font-family: 'Minecraftia', sans-serif;
+    text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
+
+}
+
+.picture-box {
+    display: flex; /* Flexbox로 가로로 배치 */
+    
+    background-repeat: no-repeat; /* 이미지가 반복되지 않게 설정 */
+    background-position: center; /* 이미지를 중앙에 배치 */
+    width: 100%; 
+    margin: 0 auto;
 }
 
 
