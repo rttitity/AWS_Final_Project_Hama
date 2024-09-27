@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <script src="aws-sdk.min.js"></script>
+  <script src="aws-cognito-sdk.min.js"></script>
+  <script src="amazon-cognito-identity.min.js"></script>
+  <script src="main.js"></script>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <div class="container">
+    <p class="fsize">Login</p>  
+    <input type="text" id="email" placeholder="email">
+    <input type="password" id="password" placeholder="password">
+    <input class="fsize_Login_button" type="button" value="Login" onclick="Login();">
+    <input type="button" value="Sign Up" onclick="window.location.href='signup.html';">
+  </div>
+
+  <script>
+    function Login() {
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    var username = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+
+    var authenticationData = {
+        Username: username,
+        Password: password,
+    };
+
+    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(
+        authenticationData
+    );
+    var userData = {
+        Username: username,
+        Pool: userPool,
+    };
+
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+    cognitoUser.authenticateUser(authenticationDetails, {
+        onSuccess: function (result) {
+            // 세션 정보 저장
+            localStorage.setItem('isLoggedIn', 'true'); // sessionStorage에서 localStorage로 변경
+            localStorage.setItem('username', username);
+
+            window.location.href = '../main_page/index.html'; // 수정
+        },
+
+        onFailure: function(err) {
+            alert("로그인 실패");
+        }
+    });
+}
+  </script>
+</body>
+</html>

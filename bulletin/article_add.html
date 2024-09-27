@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>글 등록 페이지</title>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    <script src="./js/s3_photoExample.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-nav">
+            <a href="../main_page/index.html" class="logo">
+              <img src="./img/minecraft_title.png" alt="Hama Logo" />
+            </a>
+        </div>
+        <div class="header-title">
+            <h1>Add Post</h1>
+        </div>
+    </header>
+
+    <div class="add_container">
+        <form name="article_add_form" method="POST">
+            <div class="minecraft-console">
+                <label for="title-input">Title</label>
+                <input type="text" id="title" placeholder="Please add title">
+            </div>
+
+            <div class="minecraft-console">
+                <label for="content-input">Content</label>
+                <input type="text" id="content" placeholder="Please add Content">
+            </div>
+
+            <div class="minecraft-console">
+                <label for="article-input">Picture</label>
+                <input type="file" id="article_image" name="filename" required>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="button_container">
+        <div class="detail-button-box">
+            <button onclick="submitToAPI(event)">등록</button>
+            <button onclick="cancelAndGoBack()">취소</button>
+        </div>
+    </div>
+</body>
+</html>

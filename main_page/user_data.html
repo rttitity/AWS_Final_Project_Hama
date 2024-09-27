@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="loadUserProfile()">
+
+
+    <header class="header">
+        <div class="logo-nav">
+            <a href="../main_page/index.html" class="logo">
+              <img src="./img/minecraft_title.png" alt="Hama Logo" />
+            </a>
+        </div>
+        <div class="header-title">
+            <h1>User Data</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="main">
+            <div class="hero" style="background-image: url('./img/main-banner.png');"></div>
+
+            <section class="profile-name-section">
+                <span class="Title"><h2>User Data</h2></span>
+            </section>
+
+            <main class="profile-main">
+                <section class="profile-section">
+                    <section class="profile-up-section">
+                        <section class="profile-picture-section">
+                            <div class="profile-picture-box">
+                                <h2 class="profile-picture-box-title">사용자 프로필</h2>
+                                <img src="https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/User_Data/no_email/no_profile_image.png" alt="Profile Picture" class="server-img" id="profile-picture">
+                                <p id="upload-status"></p>
+                            </div>
+                        </section>
+
+                        <section class="profile-graph-section">
+                            <div class="profile-box">
+                                <h2>Email-Address</h2>
+                                <p id="user-email">Loading...</p>
+                            </div>
+
+                            <div class="profile-box">
+                                <h2 class="profile-box-title">현재 재화 정보</h2>
+                                <p class="server-description"><strong>30,000 gold</strong></p>
+                            </div>
+                        </section>
+                    </section>
+
+                    
+
+                    <section class="profile-logout-section">
+                        <div class="profile-button-box">
+                            <h2 class="profile-comment-title">Your Comment</h2>
+                            <p id="current-comment">Loading your comment...</p>
+                        </div>
+                        <div class="profile-button-box">
+                            <!-- Change Profile 버튼: 파일 선택 창을 여는 버튼 -->
+                            <input type="file" id="profile_image" accept="image/*" style="display: none;">
+                            <button class="profile_btn" onclick="redirectToChangeProfile()">Change Profile</button>
+                        
+
+                        </div>
+                        <div class="profile-button-box">
+                            <!-- 기존 Logout 버튼 유지 -->
+                            <button class="logout_btn">Logout</button>
+                        </div>
+                    </section>
+                </section>
+            </main>
+        </main>
+
+        <footer class="footer">
+            <h3>WHAT WE BELIEVE</h3>
+            <p>We believe in produce. Tasty produce. Produce like:</p>
+            <p>Apples. Oranges. Limes. Lemons. Guavas. Carrots. Cucumbers. Jicamas. Cauliflowers. Brussels sprouts. Shallots. Japanese eggplants. Asparagus. Artichokes—Jerusalem artichokes, too. Radishes. Broccoli. Baby broccoli. Broccolini. Bok choy. Scallions. Ginger. Cherries. Raspberries. Cilantro. Parsley. Dill</p>
+        </footer>
+    </div>
+    <script src="../login_page/aws-cognito-sdk.min.js"></script>
+    <script src="../login_page/amazon-cognito-identity.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1048.0.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

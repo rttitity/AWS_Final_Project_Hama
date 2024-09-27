@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>게시물 상세 보기</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    <script src="./js/s3_photoExample.js"></script>
+</head>
+<body onload="getArticleDetail()">
+
+    <!-- 헤더 부분 -->
+    <header class="header">
+        <div class="logo-nav">
+            <a href="../main_page/index.html" class="logo">
+              <img src="./img/minecraft_title.png" alt="Hama Logo" />
+            </a>
+        </div>
+        <div class="header-title">
+            <h1>View Community Details</h1>
+        </div>
+    </header>
+
+
+    <div class="bulletin_container">
+        
+        <div id="article-detail">
+            <div class="article-box article-title-box">
+                <h2 id="article-title"></h2>
+            </div>
+
+            <div class="article-box article-content-box">
+                <img id="article-image" src="" alt="게시물 이미지">
+                <p id="article-content"></p>
+            </div>
+
+            <div class="article-box article-endline-box"></div>
+                <h2 id="article-title"></h2>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="button_container">
+        <div class="detail-button-box">
+            <button onclick="goToArticleList()">목록으로</button>
+            <button id="delete-button" onclick="deleteArticle()">Delete</button>
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+</html>

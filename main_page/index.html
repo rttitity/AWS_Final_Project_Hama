@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Style Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    <script src="scripts.js"></script>
+</head>
+<body>
+
+    <!-- Minecraft 메인 타이틀 이미지 -->
+    <div class="main-title">
+        <img src="./img/minecraft_colorfull_title.png" alt="Minecraft Title">
+      </div>
+    
+      <!-- 스플래시 텍스트 -->
+      <div class="splash-container">
+        <div id="splash-text"></div>
+      </div>
+      
+      <!-- Minecraft 메뉴 -->
+      <div class="mc-menu">
+        <!-- Single Button -->
+        <div class="mc-button full">
+          <div class="title">Game Start</div>
+        </div>
+
+        <div class="mc-button full">
+          <a href="../bulletin/article_view.html" class="title">Community</a>
+        </div>
+        
+        <div class="mc-button full">
+          <div class="title">Weekly Ranking</div>
+        </div>
+    
+        <!-- Double Button -->
+        <div class="double">
+          <div class="mc-button full">
+            <div class="title">Options</div>
+          </div>
+          <div class="mc-button full">
+            <div class="title" id="userDataButton" onClick="goToUserData()">Login</div>
+          </div>
+        </div>
+    
+        <!-- Language Button -->
+        <div class="mc-button full lang">
+          <div class="title">
+            <img src="https://i.ibb.co/99187Lk/lang.png" alt="Lang">
+          </div>
+        </div>
+      </div>
+
+    <script>
+        $(function () {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userDataButton = document.getElementById('userDataButton');
+
+            if (isLoggedIn === 'true') {
+                userDataButton.textContent = 'User Data';
+                userDataButton.onclick = function() {
+                    window.location.href = 'user_data.html';
+                };
+            } else {
+                userDataButton.textContent = 'Login';
+                userDataButton.onclick = function() {
+                    window.location.href = '../login_page/login.html';
+                };
+            }
+
+            // "community" 링크 클릭 이벤트 처리
+            const communityLink = document.getElementById('communityLink');
+            communityLink.addEventListener('click', function(event) {
+                if (isLoggedIn !== 'true') {
+                    event.preventDefault();
+                    alert("로그인 후 이용해주세요");
+                } else {
+                    window.location.href = '../bulletin/article_view.html';
+                }
+            });
+
+            // "Game Start" 버튼 클릭 이벤트 처리
+            const gameStartButton = document.getElementById('gameStartButton');
+            gameStartButton.addEventListener('click', function(event) {
+                if (isLoggedIn !== 'true') {
+                    alert("로그인 후 이용해주세요");
+                } else {
+                    // Minecraft 실행 코드
+                    var url = "minecraft://";
+                    var exec = document.createElement("a");
+                    exec.setAttribute("href", url);
+                    exec.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
