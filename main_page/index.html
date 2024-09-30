@@ -25,11 +25,11 @@
       <div class="mc-menu">
         <!-- Single Button -->
         <div class="mc-button full">
-          <div class="gameStartButton">Game Start</div>
+          <div id="gameStartButton" class="gameStartButton">Game Start</div>
         </div>
 
         <div class="mc-button full">
-          <a href="../bulletin/article_view.html" class="title">Community</a>
+          <a href="#" id="communityLink" class="title">Community</a>
         </div>
         
         <div class="mc-button full">
@@ -54,48 +54,5 @@
         </div>
       </div>
 
-    <script>
-        $(function () {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            const userDataButton = document.getElementById('userDataButton');
-
-            if (isLoggedIn === 'true') {
-                userDataButton.textContent = 'User Data';
-                userDataButton.onclick = function() {
-                    window.location.href = 'user_data.html';
-                };
-            } else {
-                userDataButton.textContent = 'Login';
-                userDataButton.onclick = function() {
-                    window.location.href = '../login_page/login.html';
-                };
-            }
-
-            // "community" 링크 클릭 이벤트 처리
-            const communityLink = document.getElementById('communityLink');
-            communityLink.addEventListener('click', function(event) {
-                if (isLoggedIn !== 'true') {
-                    event.preventDefault();
-                    alert("로그인 후 이용해주세요");
-                } else {
-                    window.location.href = '../bulletin/article_view.html';
-                }
-            });
-
-            // "Game Start" 버튼 클릭 이벤트 처리
-            const gameStartButton = document.getElementById('gameStartButton');
-            gameStartButton.addEventListener('click', function(event) {
-                if (isLoggedIn !== 'true') {
-                    alert("로그인 후 이용해주세요");
-                } else {
-                    // Minecraft 실행 코드
-                    var url = "minecraft://";
-                    var exec = document.createElement("a");
-                    exec.setAttribute("href", url);
-                    exec.click();
-                }
-            });
-        });
-    </script>
 </body>
 </html>

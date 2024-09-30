@@ -151,6 +151,51 @@ function sendProfileDataToLambda(email, profileImageUrl, profileComment) {
     });
 }
 
+// index.html 로그인시 유저 정보 가져오기
+$(function () {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const userDataButton = document.getElementById('userDataButton');
+
+    if (isLoggedIn === 'true') {
+        userDataButton.textContent = 'User Data';
+        userDataButton.onclick = function() {
+            window.location.href = 'user_data.html';
+        };
+    } else {
+        userDataButton.textContent = 'Login';
+        userDataButton.onclick = function() {
+            window.location.href = '../login_page/login.html';
+        };
+    }
+
+    // "community" 링크 클릭 이벤트 처리
+    const communityLink = document.getElementById('communityLink');
+    communityLink.addEventListener('click', function(event) {
+        if (isLoggedIn !== 'true') {
+            event.preventDefault();
+            alert("로그인 후 이용해주세요");
+        } else {
+            window.location.href = '../bulletin/article_view.html';
+        }
+    });
+
+    // "Game Start" 버튼 클릭 이벤트 처리
+    const gameStartButton = document.getElementById('gameStartButton');
+    gameStartButton.addEventListener('click', function(event) {
+        if (isLoggedIn !== 'true') {
+            alert("로그인 후 이용해주세요");
+        } else {
+            // Minecraft 실행 코드
+            var url = "minecraft://";
+            var exec = document.createElement("a");
+            exec.setAttribute("href", url);
+            exec.click();
+        }
+    });
+});
+
+
+
 // 사용자 이메일 정보 가져오기
 function getCurrentUserEmail(callback) {
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
