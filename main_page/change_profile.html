@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Profile</title>
+    <link rel="stylesheet" href="userdata.css">
+</head>
+<body>
+
+    <header class="header"></header>
+        <div class="logo-nav">
+            <a href="../main_page/index.html" class="logo">
+              <img src="../img/minecraft_title.png" alt="Hama Logo" />
+            </a>
+        </div>
+        <div class="header-title">
+            <h1>Change Profile</h1>
+        </div>
+    </header>
+
+
+    <div class="container">
+
+
+        <main class="main">
+            <section class="profile-change-section">
+                <h2 class="profile-change-title">Change Your Profile</h2>
+
+                <div class="profile-picture-upload">
+                    <h3 class="profile-section-title">Upload New Profile Picture</h3>
+                    <input type="file" id="new_profile_image" accept="image/*">
+                </div>
+
+                <div class="profile-comment-section">
+                    <h3 class="profile-section-title">Update Your Comment</h3>
+                    <textarea id="new_profile_comment" placeholder="Enter your new comment here..."></textarea>
+                </div>
+
+                <button class="save-profile_btn" onclick="saveProfileChanges()">Save Changes</button>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <h3>WHAT WE BELIEVE</h3>
+            <p>We believe in produce. Tasty produce. Produce like:</p>
+            <p>Apples. Oranges. Limes. Lemons. Guavas. Carrots. Cucumbers. Jicamas. Cauliflowers. Brussels sprouts. Shallots. Japanese eggplants. Asparagus. Artichokes—Jerusalem artichokes, too. Radishes. Broccoli. Baby broccoli. Broccolini. Bok choy. Scallions. Ginger. Cherries. Raspberries. Cilantro. Parsley. Dill</p>
+        </footer>
+    </div>
+    <script src="../login_page/aws-cognito-sdk.min.js"></script>
+    <script src="../login_page/amazon-cognito-identity.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1048.0.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

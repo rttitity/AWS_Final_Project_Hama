@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sign Up</title>
+  <title>Login</title>
+  <script src="aws-sdk.min.js"></script>
   <script src="aws-cognito-sdk.min.js"></script>
   <script src="amazon-cognito-identity.min.js"></script>
   <script src="main.js"></script>
@@ -10,12 +11,43 @@
 </head>
 
 <body>
-  <div class="container">
-    <p class="fsize">Sign Up</p>  
-    <input type="text" id="email" placeholder="email">
-    <input type="password" id="password" placeholder="password">
-    <input class="fsize_Sign_button" type="button" value="Sign Up" onclick="SignUp();">
-    <input type="button" value="Back" onclick="window.location.href='login.html';">
+
+  <header class="header">
+    <div class="logo-nav">
+        <a href="../main_page/index.html" class="logo">
+          <img src="../img/minecraft_title.png" alt="Hama Logo">
+        </a>
+    </div>
+    <div class="header-title">
+        <h1>SignUp Page</h1>
+    </div>
+  </header>
+
+
+  <div class="input_container">
+    <div class="login-console">
+      <label for="title-input">Your Email</label>
+      <input type="text" id="email" placeholder="Please add email">
+    </div>
+
+    <div class="login-console">
+      <label for="content-input">Your Password</label>
+      <input type="password" id="password" placeholder="Please add Password">
+    </div>
   </div>
+
+
+
+  <div class="button_container">
+    <div class="wide-button-box">
+      <button type="button" value="Login" onclick="SignUp();">SignUp</button>
+    </div>
+
+    <div class="wide-button-box">
+      <button type="button" class="btn-cancel" onclick="window.location.href='../main_page/index.html';">Cancel</button>
+    </div>
+  </div>
+
+
 </body>
 </html>

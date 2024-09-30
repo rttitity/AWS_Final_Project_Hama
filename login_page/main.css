@@ -11,7 +11,7 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #fff;
-background-image: url('../img/Dirt_background.webp');
+  background-image: url('../img/Dirt_background.webp');
   
   margin: 0;
   padding: 0;
@@ -22,23 +22,7 @@ background-image: url('../img/Dirt_background.webp');
   height: 100vh;
 }
 
-.input_container {
-  height: 60%;
-  width: 100%;
-  margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.5); /* 배경 투명도 80% */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px; /* 내부 요소에 여백 추가 */
 
-}
-
-.button_container {
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-}
 
 /* ----------------- 헤더 부분 ------------------- */
 .header {
@@ -83,55 +67,170 @@ background-image: url('../img/Dirt_background.webp');
 .fsize{
     font-size: 28px;
     text-align: center;
-  }
+}
 
-  .fsize_Login_button {
-    margin-bottom: 10px;
-  }
+.fsize_Login_button {
+  margin-bottom: 10px;
+}
   
-  .fsize_Sign_button {
-    margin-bottom: 10px;
-  }
+.fsize_Sign_button {
+  margin-bottom: 10px;
+}
   
 
-  .container {
-    width: 280px;
-    margin: 0 auto;
-    padding: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+.container {
+  width: 280px;
+  margin: 0 auto;
+  padding: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
 
-  input[type="text"],
-  input[type="password"] {
-    width: 93%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
 
-  input[type="button"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #0000FF;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+.login-console {
+  width: 500px;
+  margin: 20px auto;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 약간의 그림자 */
+}
+  
+.login-console label {
+  color: #d0d0d0; /* 밝은 회색 텍스트 */
+  font-size: 20px;
+  font-family: 'Minecraftia', sans-serif;
+  display: block;
+  margin-bottom: 5px;
+}
+  
+.login-console input[type="text"], .login-console input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  height: 64px; /* 고정된 높이로 다른 input과 동일하게 */
+  box-sizing: border-box; /* 테두리와 패딩을 포함한 높이 계산 */
+  
+  
+  border: 2px solid #ffffff; /* Minecraft 테두리 */
+  box-shadow: inset -2px -4px #0006; /* Minecraft 텍스트 박스 상자 */
+  background-color: #000000; /* 어두운 배경색 */
+  color: #DDD; /* 텍스트 색상 */
+  font-family: 'Minecraftia', sans-serif;
+    
+  outline: none; /* 입력 필드 선택 시 기본 테두리 제거 */
+}
+  
+.login-console input[type="text"]::placeholder {
+  color: #888; /* 플레이스홀더 텍스트 색상 */
+}
+  
+/* 숨겨진 파일 입력 필드 */
+.login-console input[type="file"] {
+  display: none; /* 파일 입력 버튼 숨기기 */
+}
+  
+.input_container {
+  height: 60%;
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 투명도 80% */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* 내부 요소에 여백 추가 */
 
-  input[type="button"]:hover {
-    background-color: #0000FF;
-  }
+}
+  
+.button_container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
 
-  button{
-    width: 100%;
-    padding: 10px;
-    background-color: #0000FF;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
- }
+
+
+
+.detail-button-box {
+  width: 50%; 
+  margin: 0 auto;
+  padding: 7px;
+    
+  display: flex; /* Flexbox 레이아웃 사용 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  gap: 15px; /* 버튼들 사이에 15px 간격 추가 */
+}
+
+.detail-button-box button {
+  height: var(--btn-size);
+  width: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+  background: #999 url('https://i.ibb.co/rb2TWXL/bgbtn.png') center / cover;
+  image-rendering: pixelated;
+  border: 2px solid #000;
+  font-family: 'Minecraftia', sans-serif;
+  color: #DDD; /* 텍스트 색상 */
+  text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
+  box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7; /* 텍스트 상자 */
+    
+  padding: 15px 25px;
+  color: white;
+  font-size: 18px;
+}
+
+.detail-button-box button:hover {
+  background-image: none;  /* 기존 이미지 제거 */
+  background-color: rgba(100, 100, 255, .6);
+	text-shadow: 2px 2px #202013CC;
+	color: #FFFFA0;
+}
+
+.detail-button-box button:active {
+	box-shadow: inset -2px -4px #0004, inset 2px 2px #FFF5;
+}
+
+
+.wide-button-box {
+  width: 50%; 
+  margin: 0 auto;
+  padding: 7px;
+  
+  display: flex; /* Flexbox 레이아웃 사용 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  gap: 15px; /* 버튼들 사이에 15px 간격 추가 */
+}
+
+.wide-button-box button {
+  height: var(--btn-size);
+	width: 100%;
+	cursor: pointer;
+	overflow: hidden;
+	white-space: nowrap;
+	user-select: none;
+	background: #999 url('https://i.ibb.co/rb2TWXL/bgbtn.png') center / cover;
+	image-rendering: pixelated;
+	border: 2px solid #000;
+    font-family: 'Minecraftia', sans-serif;
+    color: #DDD; /* 텍스트 색상 */
+	text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
+	box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7; /* 텍스트 상자 */
+    
+    padding: 15px 25px;
+    color: white;
+    font-size: 18px;
+}
+
+.wide-button-box button:hover {
+  background-image: none;  /* 기존 이미지 제거 */
+  background-color: rgba(100, 100, 255, .6);
+  text-shadow: 2px 2px #202013CC;
+  color: #FFFFA0;
+}
+
+.wide-button-box button:active {
+  box-shadow: inset -2px -4px #0004, inset 2px 2px #FFF5;
+}

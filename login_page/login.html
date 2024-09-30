@@ -21,19 +21,33 @@
     <div class="header-title">
         <h1>Login Page</h1>
     </div>
-</header>
+  </header>
 
 
   <div class="input_container">
-    
-    <input type="text" id="email" placeholder="email">
-    <input type="password" id="password" placeholder="password">
+    <div class="login-console">
+      <label for="title-input">Your Email</label>
+      <input type="text" id="email" placeholder="Please add email">
+    </div>
+
+    <div class="login-console">
+      <label for="content-input">Your Password</label>
+      <input type="password" id="password" placeholder="Please add Password">
+    </div>
   </div>
 
-  <div class="button_container">
 
-    <input class="fsize_Login_button" type="button" value="Login" onclick="Login();">
-    <input type="button" value="Sign Up" onclick="window.location.href='signup.html';">
+  
+
+  <div class="button_container">
+    <div class="detail-button-box">
+      <button type="button" value="Login" onclick="Login();">Login</button>
+      <button type="button" value="Sign Up" onclick="window.location.href='signup.html';">SignUp</button>
+    </div>
+
+    <div class="wide-button-box">
+      <button type="button" class="btn-cancel" onclick="window.location.href='../main_page/index.html';">Cancel</button>
+    </div>
   </div>
 
   <script>
