@@ -198,3 +198,77 @@ window.onload = function() {
         splashTextElement.innerText = getRandomSplashText();
     }
 };
+
+
+
+function saveProfileChanges() {
+    getCurrentUserEmail(function(email) {
+        var files = document.getElementById("new_profile_image").files;
+        var profileComment = document.getElementById("new_profile_comment").value;
+
+        // 이미지가 선택되지 않았으면 경고
+        if (!files.length && !profileComment) {
+            return alert("Please upload a profile image or add a comment to save changes.");
+        }
+
+        if (files.length) {
+            var file = files[0];
+            var fileName = `User_Data/${email}/profile/${file.name}`;
+
+            var upload = new AWS.S3.ManagedUpload({
+                params: {
+                    Bucket: "hama-web-bucket",
+                    Key: fileName,
+                    Body: file,
+                    ACL: 'public-read'
+                }
+            });
+
+            var promise = upload.promise();
+
+            promise.then(
+                function(data) {
+                    alert("Successfully uploaded profile image.");
+                    sendProfileDataToLambda(email, data.Location, profileComment);
+                },
+                function(err) {
+                    console.log("Error uploading profile image:", err);
+                    alert("There was an error uploading your profile image: " + err.message);
+                }
+            );
+        } else {
+            sendProfileDataToLambda(email, null, profileComment);
+        }
+    });
+}
+
+// Lambda로 프로필 데이터 전송
+function sendProfileDataToLambda(email, profileImageUrl, profileComment) {
+    const article_id = uuidv4(); // UUID로 article_id 생성
+    const Item = {
+        'article_id': article_id,  // article_id 추가
+        'email': email,
+        'profileImageUrl': profileImageUrl || null,
+        'profilecoment': profileComment || null,
+        'timestamp': new Date().toISOString()
+    };
+
+    fetch(apiGatewayUrl, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Item)  // 데이터를 JSON으로 변환하여 전송
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Success:", data);
+        alert("Profile changes saved successfully.");
+        window.location.href = 'user_data.html';  // 프로필 페이지로 리다이렉션
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("There was an error saving your profile changes.");
+    });
+}

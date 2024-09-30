@@ -49,60 +49,6 @@
 }
 
 
-/* ---- 프로필 섹션 ---- */
-.profile-picture-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-picture-box-title {
-    font-family: 'Minecraftia', sans-serif;
-    color: white;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.server-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%; /* 원형 이미지 */
-    object-fit: cover;
-    border: 4px solid white; /* 하얀 테두리 */
-}
-
-
-
-/* ---- 정보 및 로그아웃 섹션 ---- */
-.profile-box {
-    background-color: rgba(0, 0, 0, 0.5); 
-    border: 2px solid white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    border-radius: 10px; /* 약간의 모서리 곡선 */
-    margin-bottom: 20px;
-    color: white;
-    text-align: center;
-}
-
-.logout_btn, .profile_btn {
-    font-family: 'Minecraftia', sans-serif;
-    font-size: 18px;
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    border: 2px solid white;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.logout_btn:hover, .profile_btn:hover {
-    background-color: rgba(100, 100, 255, .6);
-    color: #FFFFA0;
-}
-
 
 
 /* style.css */
@@ -121,6 +67,8 @@ body {
     align-items: center;
     justify-content: flex-start;
     height: 100vh;
+    width: 100%;
+
 }
 
 
@@ -281,65 +229,6 @@ body {
 }
 
 
-
-
-
-
-/* 게시물 목록 컨테이너 폭 */
-ul#articles {
-    width: 50%;
-    list-style-type: none;
-    padding: 0;
-    margin: 0 auto; /* 가로로 중앙 정렬 */
-}
-
-/* 게시물 목록의 각각의 항목 */
-ul#articles > li {
-    padding: 5px;  /* 항목 안쪽에 5px의 여백을 추가합니다. */
-    margin-bottom: 10px;  /* 항목들 간에 10px의 간격을 줍니다. */
-    background-color: rgba(0, 0, 0, 1);  /* 배경 색상을 검은색으로 설정합니다. (rgba에서 1은 불투명) */
-    
-    cursor: pointer;  /* 마우스를 올리면 커서가 손가락 모양으로 변경됩니다. (클릭 가능한 요소임을 나타냅니다.) */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);  /* 각 항목에 그림자를 추가하여 약간의 입체감을 줍니다. */
-    font-family: 'Minecraftia', sans-serif;  /* 항목의 텍스트 폰트를 'Minecraftia'로 설정합니다. 'sans-serif'는 대체 폰트입니다. */
-}
-
-/*특정 요소에 마우스를 올렸을 때(hover 상태) 적용되는 스타일을 지정하는 규칙 */
-ul#articles > li:hover {
-    outline: 4px solid #e0e0e0; /* hover 시 외곽선 적용 */
-}
-
-/* 게시물 목록 스타일 */
-.article-item {
-    display: flex;
-    align-items: center;  /* 세로 중앙 정렬 */
-    margin-bottom: 10px;  /* 각 게시물 간 여백 */
-    color: #ddd;  /* 텍스트 색상 */
-}
-
-/* 게시물 목록 이미지 스타일 */
-.article-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-right: 20px;
-}
-
-/* 게시물 콘텐츠 스타일 */
-.article-view-content h3 {
-    margin: 0;
-}
-
-.article-view-content p {
-    margin: 5px 0;
-    color: #444;
-}
-
-/* ------------ article_ view 부분 끝 ------------ */
-
-
-
 /* Minecraft Style Menu */
 .mc-menu {
 	--btn-size: 30pt;
@@ -376,135 +265,7 @@ ul#articles > li:hover {
 
 }
 
-/* ------------ 등록 버튼 부분 ------------ */
-#register-button {
-    height: var(--btn-size);
-	width: calc(var(--btn-size) * 10);
-	cursor: pointer;
-	overflow: hidden;
-	white-space: nowrap;
-	user-select: none;
-	background: #999 url('https://i.ibb.co/rb2TWXL/bgbtn.png') center / cover;
-	image-rendering: pixelated;
-	border: 2px solid #000;
-	font-size: 18px;
-    
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    padding: 15px 25px;
-    font-family: 'Minecraftia', sans-serif;
-    color: #DDD; /* 텍스트 색상 */
-	text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
-	box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7; /* 텍스트 상자 그림자 */
-    
-}
 
-#register-button:hover {
-    background-image: none;  /* 기존 이미지 제거 */
-    background-color: rgba(100, 100, 255, .6);
-	text-shadow: 2px 2px #202013CC;
-	color: #FFFFA0;
-}
-
-#register-button:active {
-	box-shadow: inset -2px -4px #0004, inset 2px 2px #FFF5;
-}
-/* ------------------------------- */
-
-
-/* -------- 게시물 상세 페이지 버튼 -------- */
-.container button {
-    height: var(--btn-size);
-	width: calc(var(--btn-size) * 10);
-	cursor: pointer;
-	overflow: hidden;
-	white-space: nowrap;
-	user-select: none;
-	background: #999 url('https://i.ibb.co/rb2TWXL/bgbtn.png') center / cover;
-	image-rendering: pixelated;
-	border: 2px solid #000;
-    font-family: 'Minecraftia', sans-serif;
-    color: #DDD; /* 텍스트 색상 */
-	text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
-	box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7; /* 텍스트 상자 */
-    
-    padding: 15px 25px;
-    color: white;
-    font-size: 18px;
-}
-
-
-#container button:hover {
-    background-image: none;  /* 기존 이미지 제거 */
-    background-color: rgba(100, 100, 255, .6);
-	text-shadow: 2px 2px #202013CC;
-	color: #FFFFA0;
-}
-
-#container button:active {
-	box-shadow: inset -2px -4px #0004, inset 2px 2px #FFF5;
-}
-/* -------------------------------- */
-
-
-/* -------- 게시물 상세 내용 박스 --------*/
-.article-box {
-    
-    background-repeat: no-repeat; /* 이미지가 반복되지 않게 설정 */
-    background-position: center; /* 이미지를 중앙에 배치 */
-    width: 50%; 
-    margin: 0 auto;
-    padding: 15px;
-    
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.article-title-box {
-    background-size: auto 50px; /* 세로는 150px로 고정하고 가로는 비율에 맞게 자동 조정 */
-    background-size: contain; /* 이미지 비율을 유지하면서 박스에 맞게 조정 */
-    background-size: 100% 100%; /* 이미지가 박스 크기에 맞게 조정됨 */
-    background-image: url('./img/Book_title.png');
-    text-align: center;
-}
-
-.article-content-box {
-    background-size: cover; /* 이미지가 박스 크기에 맞게 조정됨 */
-    background-image: url('./img/Book_middle.png');
-    text-align: center;
-}
-
-
-#article-detail img {
-    width: 80%;
-    max-width: 500px;
-    height: auto;
-    
-    border-radius: 5px;
-    margin-bottom: 20px;
-    display: inline-block;
-    margin: 0 auto 20px;
-}
-
-#article-detail h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-
-#article-detail p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #666;
-}
-
-.article-endline-box {
-    background-size: auto 66px; /* 세로는 150px로 고정하고 가로는 비율에 맞게 자동 조정 */
-    background-size: cover; /* 이미지가 박스 크기에 맞게 조정됨 */
-    background-image: url('./img/Book_end66.png');
-    text-align: center;
-}
 
 .detail-button-box {
     width: 50%; 
@@ -520,7 +281,7 @@ ul#articles > li:hover {
 
 .detail-button-box button{
     height: var(--btn-size);
-	width: calc(var(--btn-size) * 10);
+	width: 100%;
 	cursor: pointer;
 	overflow: hidden;
 	white-space: nowrap;
@@ -548,89 +309,191 @@ ul#articles > li:hover {
 .detail-button-box button:active {
 	box-shadow: inset -2px -4px #0004, inset 2px 2px #FFF5;
 }
+
+
+.wide-button-box {
+    width: 50%; 
+    margin: 0 auto;
+    padding: 7px;
+    
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 15px; /* 버튼들 사이에 15px 간격 추가 */
+  }
+  
+  .wide-button-box button {
+    height: var(--btn-size);
+      width: 100%;
+      cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+      user-select: none;
+      background: #999 url('https://i.ibb.co/rb2TWXL/bgbtn.png') center / cover;
+      image-rendering: pixelated;
+      border: 2px solid #000;
+      font-family: 'Minecraftia', sans-serif;
+      color: #DDD; /* 텍스트 색상 */
+      text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
+      box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7; /* 텍스트 상자 */
+      
+      padding: 15px 25px;
+      color: white;
+      font-size: 18px;
+  }
+  
+  .wide-button-box button:hover {
+    background-image: none;  /* 기존 이미지 제거 */
+    background-color: rgba(100, 100, 255, .6);
+    text-shadow: 2px 2px #202013CC;
+    color: #FFFFA0;
+  }
+  
+  .wide-button-box button:active {
+    box-shadow: inset -2px -4px #0004, inset 2px 2px #FFF5;
+  }
 /* -------------------------------- 수정 필요... */
 
 
 
+/* ---- User Data ---- */
 
-/* 추가된 스타일링 */
-.article-title {
-    margin-bottom: 20px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-}
+.profile-main-container {
+    width: 70%;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.5); /* 배경 투명도 80% */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* 내부 요소에 여백 추가 */
 
-.article-content {
-    margin-top: 20px;
-}
-
-.article-content img {
-    display: block;
-    margin: 0 auto 20px;
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.article-content p {
-    font-size: 18px;
-    line-height: 1.8;
-    color: #444;
-    margin-bottom: 20px;
+    font-family: 'Minecraftia', sans-serif; /* Minecraftia 폰트 적용 */
 }
 
 
-/*---- 검색창과 검색 버튼 스타일링 ----*/
-.search-container {
+
+
+
+
+.profile-name-section {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: left;
+    flex-direction: column;
+    padding: 8px;
+    background-color: #EAEDF2;
 }
 
-/* 기존 Minecraft 스타일에 맞춘 검색 입력 필드 */
-#search-input {
-    width: 40%;
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #000; /* Minecraft 테두리 */
-    box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7; /* Minecraft 텍스트 박스 상자 */
-    background-color: #333; /* 어두운 배경색 */
-    color: #DDD; /* 텍스트 색상 */
-    font-family: 'Minecraftia', sans-serif;
-    text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
-    outline: none; /* 입력 필드 선택 시 기본 테두리 제거 */
-}
-
-
-
-#search-button {
-    height: var(--btn-size);
-	width: calc(var(--btn-size) * 10);
-	cursor: pointer;
-	overflow: hidden;
-	white-space: nowrap;
-	user-select: none;
-	background: #999 url('https://i.ibb.co/rb2TWXL/bgbtn.png') center / cover;
-	image-rendering: pixelated;
-	border: 2px solid #000;
-    font-family: 'Minecraftia', sans-serif;
-    color: #DDD; /* 텍스트 색상 */
-	text-shadow: 2px 2px #000A; /* 텍스트 그림자 */
-	box-shadow: inset -2px -4px #0006, inset 2px 2px #FFF7; /* 텍스트 상자 */
+.profile-section {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     
-    padding: 15px 25px;
-    color: white;
-    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    background-color: #d0d0d0; /* 이미지에서 보여지는 기본 회색 배경 */
+    border-radius: 8px; /* 모서리 둥글게 설정 */
+    padding: 20px; /* 내부 여백 추가 */
+    margin: 20px auto; /* 중앙 정렬 */
+    background-size: cover; /* 배경 이미지 크기를 맞춤 */
+	box-shadow: inset -4px -4px #0006, inset 4px 4px #FFF7; /* 텍스트 상자 */
 }
 
-#search-button:hover {
-    background-image: none;  /* 기존 이미지 제거 */
-    background-color: rgba(100, 100, 255, .6);
-	text-shadow: 2px 2px #202013CC;
-	color: #FFFFA0;
+.profile-up-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    background-color: #ffffff;
 }
 
-#search-button:active {
-	box-shadow: inset -2px -4px #0004, inset 2px 2px #FFF5;
+.profile-picture-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 50%;
+    background-color: #EAEDF2;
+    padding: 10px;
+}
+
+.profile-graph-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 50%;
+    background-color: #EAEDF2;
+}
+
+.profile-logout-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #EAEDF2;
+}
+
+.profile-box {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #000000;
+    padding: 10px;
+}
+
+.profile-button-box {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #000000;
+}
+
+/* 사용자 프로필 이미지 박스 */
+.profile-picture-box {
+    position: relative;
+    max-width: 100%; /* 상자의 너비 */
+    aspect-ratio: 1 / 1; /* 1:1 비율 유지 */
+    border: 4px solid #fff; /* 흰색 테두리 */
+    border-radius: 4px; /* 약간의 모서리 둥글림 */
+    background-color: #3d3d3d; /* 배경색 */
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2); /* 외부 및 내부 그림자 */
+    background-size: cover; /* 이미지를 상자 크기에 맞춤 */
+    background-position: center; /* 이미지 중앙에 위치 */
+}
+
+.profile-picture-box img {
+    max-width: 100%; /* 부모 요소의 너비에 맞추기 */
+    max-height: 100%; /* 부모 요소의 높이에 맞추기 */
+    object-fit: contain; /* 이미지 비율을 유지하면서 박스 안에 맞추기 */
+    display: block;
+    margin: 0 auto;
+}
+
+
+.profile-logout-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #EAEDF2;
+}
+
+.profile-box {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #000000;
+}
+
+.profile-button-box {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #000000;
 }

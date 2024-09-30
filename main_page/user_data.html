@@ -22,12 +22,14 @@
 
     <div class="userdata_container">
 
-        <main class="profile-main">
+        <div class="profile-main-container">
             <section class="profile-section">
                 <section class="profile-up-section">
                     <section class="profile-picture-section">
+                        <h2 class="profile-picture-box-title">사용자 프로필</h2>
+
                         <div class="profile-picture-box">
-                            <h2 class="profile-picture-box-title">사용자 프로필</h2>
+                            
                             <img src="https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/User_Data/no_email/no_profile_image.png" alt="Profile Picture" class="server-img" id="profile-picture">
                             <p id="upload-status"></p>
                         </div>
@@ -46,38 +48,28 @@
                     </section>
                 </section>
 
-                    
-
                 <section class="profile-logout-section">
                     <div class="profile-button-box">
                         <h2 class="profile-comment-title">Your Comment</h2>
                         <p id="current-comment">Loading your comment...</p>
                     </div>
-                    <div class="profile-button-box">
-                        <!-- Change Profile 버튼: 파일 선택 창을 여는 버튼 -->
-                        <input type="file" id="profile_image" accept="image/*" style="display: none;">
-                        <button class="profile_btn" onclick="redirectToChangeProfile()">Change Profile</button>
-                        
-
-                    </div>
-                    <div class="profile-button-box">
-                        <!-- 기존 Logout 버튼 유지 -->
-                        <button class="logout_btn">Logout</button>
-                    </div>
-                </section>
+                </section>                
             </section>
-        </main>
+        </div>    
     </div>
 
+
     <div class="button_container">
+        <div class="wide-button-box">
+            <button type="button" value="Change Profile" onclick="redirectToChangeProfile()";>Change Profile</button>
+        </div>
+
+
         <div class="detail-button-box">
-            <button type="button" value="Login" onclick="Login();">Login</button>
-            <button type="button" value="Sign Up" onclick="window.location.href='signup.html';">SignUp</button>
-          </div>
+            <button class="logout_btn">Logout</button>
+            <button class="btn-cancel" onclick="window.location.href='../main_page/index.html';">Cancel</button>
+        </div>
       
-          <div class="wide-button-box">
-            <button type="button" class="btn-cancel" onclick="window.location.href='../main_page/index.html';">Cancel</button>
-          </div>
     </div>
 
     <script src="../login_page/aws-cognito-sdk.min.js"></script>
