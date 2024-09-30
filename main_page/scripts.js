@@ -272,3 +272,16 @@ function sendProfileDataToLambda(email, profileImageUrl, profileComment) {
         alert("There was an error saving your profile changes.");
     });
 }
+
+
+// 이미지 등록 시 파일이 선택되었을때 텍스트를 업데이트 하는 함수
+function updateFileName() {
+    const input = document.getElementById('new_profile_image');
+    const fileNameDisplay = document.getElementById('file-name');
+
+    if (input.files.length > 0) {
+        fileNameDisplay.textContent = input.files[0].name; // 선택된 파일 이름을 출력
+    } else {
+        fileNameDisplay.textContent = 'Please choose your image'; // 파일이 없을 경우 기본 메시지
+    }
+}
