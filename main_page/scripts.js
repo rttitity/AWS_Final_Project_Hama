@@ -265,7 +265,7 @@ function sendProfileDataToLambda(email, profileImageUrl, profileComment) {
     .then(data => {
         console.log("Success:", data);
         alert("Profile changes saved successfully.");
-        window.location.href = 'user_data.html';  // 프로필 페이지로 리다이렉션
+        window.location.href = '/main_page/user_data.html';  // 프로필 페이지로 리다이렉션
     })
     .catch((error) => {
         console.error("Error:", error);
