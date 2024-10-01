@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\minecraft]
+"URL protocol"=""
+
+[HKEY_CLASSES_ROOT\minecraft\shell]
+
+[HKEY_CLASSES_ROOT\minecraft\shell\open]
+
+[HKEY_CLASSES_ROOT\minecraft\shell\open\command]
+@="\"C:\\XboxGames\\Minecraft Launcher\\Content\\Minecraft.exe\" \"%1\""
