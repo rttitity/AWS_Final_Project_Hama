@@ -3,6 +3,9 @@ const poolData = {
     ClientId: '6jlvvpfhkaqhbc0a6l9avmam2u', // 클라이언트 ID
 };
 
+// AWS API Gateway 설정 (Lambda와 연결)
+const apiGatewayUrl = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/User_Data"; // API Gateway URL
+
 function main() {
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     const cognitoUser = userPool.getCurrentUser(); 
@@ -86,7 +89,9 @@ function ConfirmRegistration() {
             return;
         }
         console.log('call result: ' + result);
-        window.location.href = 'login.html';      
+        window.location.href = 'login.html';
+
+
     });
 }
 
@@ -131,3 +136,5 @@ function Login() {
         }
     });
 }
+
+

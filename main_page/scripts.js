@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             userDataButton.textContent = 'Login';
             userDataButton.onclick = function() {
-                window.location.href = '../login_page/login.html';
+                window.location.href = '/login_page/login.html';
             };
         }
     }

@@ -130,7 +130,6 @@ body {
 }
   
 .input_container {
-  height: 60%;
   width: 100%;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.5); /* 배경 투명도 80% */
