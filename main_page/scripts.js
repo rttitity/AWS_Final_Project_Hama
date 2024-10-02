@@ -24,13 +24,13 @@ function uuidv4() {
 
 // 공통으로 사용할 Cognito Pool Data (중복 제거)
 const poolData = {
-    UserPoolId: 'ap-northeast-2_X3lYDAFiw', // 사용자 풀 ID
-    ClientId: '6jlvvpfhkaqhbc0a6l9avmam2u', // 클라이언트 ID
+    UserPoolId: 'ap-northeast-2_IV1XOFUcn', // 사용자 풀 ID
+    ClientId: '5lgtssohmht73jqrpl259obu1v', // 클라이언트 ID
 };
 
 // 사용자를 Change Profile 페이지로 리다이렉트
 function redirectToChangeProfile() {
-    window.location.href = "./change_profile.html";
+    window.location.href = "/main_page/change_profile.html";
 }
 
 // 사용자 프로필 로드 함수 (프로필 페이지)
@@ -68,12 +68,12 @@ document.addEventListener("DOMContentLoaded", function() {
         if (isLoggedIn === 'true') {
             userDataButton.textContent = 'User Data';
             userDataButton.onclick = function() {
-                window.location.href = 'user_data.html';
+                window.location.href = '/main_page/user_data.html';
             };
         } else {
             userDataButton.textContent = 'Login';
             userDataButton.onclick = function() {
-                window.location.href = '../login_page/login.html';
+                window.location.href = '/login_page/login.html';
             };
         }
     }
