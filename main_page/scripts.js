@@ -38,17 +38,24 @@ function loadUserProfile() {
     getCurrentUserEmail(function(email) {
         document.getElementById('user-email').textContent = email;
 
-        // DynamoDB에서 사용자 프로필 이미지 URL과 코멘트 가져오기
+        // DynamoDB에서 사용자 프로필 이미지 URL, 코멘트 및 닉네임 가져오기
         fetch(`${apiGatewayUrl}?email=${email}`, {
             method: "GET",
         })
         .then(response => response.json())
         .then(data => {
+            // 닉네임을 가져와서 기존의 Loading...을 교체
+            const nicknameElement = document.getElementById('minecraft-username');
+            if (data.minecraft_username) {
+                nicknameElement.textContent = data.minecraft_username; // 사용자 닉네임 표시
+            } else {
+                nicknameElement.textContent = "No username available"; // 닉네임이 없을 경우
+            }
+
+            // 사용자 프로필 이미지가 있으면 그걸 사용, 없으면 기본 이미지 사용
             if (data.profileImageUrl) {
-                // 사용자 프로필 이미지가 있으면 그걸 사용
                 document.getElementById('profile-picture').src = data.profileImageUrl;
             } else {
-                // 프로필 이미지가 없으면 기본 이미지 사용
                 document.getElementById('profile-picture').src = "https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/User_Data/no_email/no_profile_image.png";
             }
 
@@ -58,6 +65,8 @@ function loadUserProfile() {
         .catch(error => console.error('Error fetching profile data:', error));
     });
 }
+
+
 
 // Game Start 및 Community 버튼 이벤트 처리 추가
 document.addEventListener("DOMContentLoaded", function() {
@@ -94,6 +103,21 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    // weekly Ranking 버튼 처리
+    const RankingLink = document.getElementById('RankingLink');
+    if (RankingLink) {
+        RankingLink.addEventListener('click', function(event) {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                event.preventDefault();
+                alert("로그인 후 이용해주세요");
+            } else {
+                window.location.href = '/Ranking_page/Ranking.html';
+            }
+        });
+    }
+
 
     // Community 버튼 처리
     const communityLink = document.getElementById('communityLink');

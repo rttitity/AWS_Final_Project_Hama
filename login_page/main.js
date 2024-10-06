@@ -6,6 +6,14 @@ const poolData = {
 // AWS API Gateway 설정 (Lambda와 연결)
 const apiGatewayUrl = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/User_Data"; // API Gateway URL
 
+// UUID 생성 함수 추가
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 function main() {
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     const cognitoUser = userPool.getCurrentUser(); 
@@ -89,9 +97,7 @@ function ConfirmRegistration() {
             return;
         }
         console.log('call result: ' + result);
-        window.location.href = 'login.html';
-
-
+        window.location.href = 'welcome.html';      
     });
 }
 
@@ -138,3 +144,70 @@ function Login() {
 }
 
 
+
+// Minecraft 데이터 DynamoDB 업로드 함수
+function uploadMinecraftData() {
+    var minecraftUsername = document.getElementById("minecraft_username").value;
+
+    // 이메일은 Cognito에서 가져온다 (이메일이 사용자 풀에 저장되어 있다고 가정)
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    const cognitoUser = userPool.getCurrentUser();
+
+    if (cognitoUser != null) {
+        cognitoUser.getSession(function(err, session) {
+            if (err) {
+                console.log(err);
+                alert("Session error, please log in again.");
+                window.location.href = "login.html";
+            } else {
+                // 유저 속성에서 이메일을 가져옴
+                cognitoUser.getUserAttributes(function(err, attributes) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        var email = attributes.find(attr => attr.Name === "email").Value;
+                        
+                        // 이메일과 Minecraft 닉네임을 Lambda로 전송
+                        sendProfileDataToLambda(email, minecraftUsername);
+                    }
+                });
+            }
+        });
+    } else {
+        alert("No user is logged in. Please log in again.");
+        window.location.href = "login.html";
+    }
+}
+
+
+// Lambda로 이메일과 Minecraft 사용자 이름 전송
+function sendProfileDataToLambda(email, minecraftUsername) {
+    const article_id = uuidv4(); // UUID로 article_id 생성
+
+    const Item = {
+        'article_id': article_id,  // article_id 추가
+        'email': email,
+        'minecraft_username': minecraftUsername || null, // Minecraft 사용자 이름
+        'profileImageUrl': null,  // 기본값은 null
+        'profilecoment': null,  // 기본값은 null
+        'timestamp': new Date().toISOString()
+    };
+
+    fetch(apiGatewayUrl, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Item)  // 데이터를 JSON으로 변환하여 전송
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Success:", data);
+        alert("Profile changes saved successfully.");
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("There was an error saving your profile changes.");
+    });
+}

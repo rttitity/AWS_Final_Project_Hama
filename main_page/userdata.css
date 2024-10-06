@@ -405,6 +405,8 @@ body {
     justify-content: space-between;
     flex-wrap: nowrap;
     background-color: #ffffff;
+    width: 100%;
+
 }
 
 .profile-picture-section {
