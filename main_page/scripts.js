@@ -12,7 +12,9 @@ var s3 = new AWS.S3({
 });
 
 // AWS API Gateway 설정 (Lambda와 연결)
-const apiGatewayUrl = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/User_Data"; // API Gateway URL
+const apiGatewayUrl = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/User_Data"; // API Gateway URL User_data쿼리 api
+const lambdaUrl = 'https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/get_xconomy'; // API Gateway의 URL xconomy 쿼리 api
+
 
 // UUID 생성 함수 추가
 function uuidv4() {
@@ -33,7 +35,8 @@ function redirectToChangeProfile() {
     window.location.href = "./change_profile.html";
 }
 
-// 사용자 프로필 로드 함수 (프로필 페이지)
+
+
 function loadUserProfile() {
     getCurrentUserEmail(function(email) {
         document.getElementById('user-email').textContent = email;
@@ -44,12 +47,31 @@ function loadUserProfile() {
         })
         .then(response => response.json())
         .then(data => {
-            // 닉네임을 가져와서 기존의 Loading...을 교체
-            const nicknameElement = document.getElementById('minecraft-username');
+            // 닉네임이 있으면 표시
             if (data.minecraft_username) {
-                nicknameElement.textContent = data.minecraft_username; // 사용자 닉네임 표시
+                document.getElementById('minecraft-username').textContent = data.minecraft_username;
+                
+                // 닉네임으로 RDS에서 재화 정보 가져오기
+                fetch(`${lambdaUrl}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        minecraft_username: data.minecraft_username
+                    })
+                })
+                .then(response => response.json())
+                .then(balanceData => {
+                    if (balanceData.balance) {
+                        document.querySelector('.server-description').textContent = `${balanceData.balance} gold`;
+                    } else {
+                        document.querySelector('.server-description').textContent = 'Balance not available';
+                    }
+                })
+                .catch(error => console.error('Error fetching balance:', error));
             } else {
-                nicknameElement.textContent = "No username available"; // 닉네임이 없을 경우
+                document.getElementById('minecraft-username').textContent = 'No username available';
             }
 
             // 사용자 프로필 이미지가 있으면 그걸 사용, 없으면 기본 이미지 사용
@@ -65,6 +87,7 @@ function loadUserProfile() {
         .catch(error => console.error('Error fetching profile data:', error));
     });
 }
+
 
 
 
