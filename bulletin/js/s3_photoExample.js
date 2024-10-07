@@ -193,14 +193,24 @@ function changePage(page) {
     displayArticles(article_arr, currentPage);
 }
 
+// 검색어를 바탕으로 게시물을 필터링하는 함수
 function filterArticles() {
-    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const searchInput = document.getElementById('search-input').value.toLowerCase();  // 검색어를 소문자로 변환
     const filteredArticles = article_arr.filter(article => 
-        article.title.toLowerCase().includes(searchInput) || 
-        article.content.toLowerCase().includes(searchInput)
+        article.title.toLowerCase().includes(searchInput) ||  // 제목에 검색어가 포함된 게시물 필터링
+        article.content.toLowerCase().includes(searchInput)   // 내용에 검색어가 포함된 게시물 필터링
     );
-    currentPage = 1; // 검색 시 첫 페이지로 이동
-    displayArticles(filteredArticles, currentPage);
+    displayArticles(filteredArticles);  // 필터링된 게시물을 화면에 표시
+}
+
+// 게시물 등록 페이지로 이동하는 함수
+function goToArticleAddPage() {
+    window.location.href = '/bulletin/article_add.html';  // 게시물 등록 페이지로 이동
+}
+
+// 게시물 상세 페이지로 이동하는 함수
+function viewArticleDetail(article_id) {
+    window.location.href = '/bulletin/article_detail.html?id=' + article_id;  // 게시물 ID를 URL 파라미터로 전달하여 상세 페이지로 이동
 }
 
  
