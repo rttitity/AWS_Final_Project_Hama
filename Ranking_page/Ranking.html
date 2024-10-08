@@ -2,13 +2,12 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>게시물 보기 페이지</title>
+    <title>플레이어 랭킹 페이지</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
-    <script src="./js/s3_photoExample.js"></script>
+    <script src="scripts.js"></script>
 </head>
-<body>
-
+<body onload="getRankings()">
 
     <header class="header">
         <div class="logo-nav">
@@ -17,49 +16,21 @@
             </a>
         </div>
         <div class="header-title">
-            <h1>Community List</h1>
+            <h1>플레이어 랭킹</h1>
         </div>
     </header>
 
-
-    <div class="bulletin_container">
-        <ul id="articles"></ul>
+    <div class="ranking_container">
+        <ul id="rankings"></ul>
         <div id="pagination"></div>
     </div>
 
     <div class="button_container">
         <!-- 검색창과 검색 버튼 -->
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="검색어를 입력하세요...">
-            <button id="search-button" onclick="filterArticles()">Search</button>
+            <input type="text" id="search-input" placeholder="플레이어를 검색하세요...">
+            <button id="search-button" onclick="filterRankings()">검색</button>
         </div>
-
-        <button id="register-button" onclick="goToArticleAddPage()">Register Post</button>
     </div>
-
-    <script>
-        
-
-        // 검색어를 바탕으로 게시물을 필터링하는 함수
-        function filterArticles() {
-            const searchInput = document.getElementById('search-input').value.toLowerCase();  // 검색어를 소문자로 변환
-            const filteredArticles = article_arr.filter(article => 
-                article.title.toLowerCase().includes(searchInput) ||  // 제목에 검색어가 포함된 게시물 필터링
-                article.content.toLowerCase().includes(searchInput)   // 내용에 검색어가 포함된 게시물 필터링
-            );
-            displayArticles(filteredArticles);  // 필터링된 게시물을 화면에 표시
-        }
-
-        // 게시물 등록 페이지로 이동하는 함수
-        function goToArticleAddPage() {
-            window.location.href = 'article_add.html';  // 게시물 등록 페이지로 이동
-        }
-
-        // 게시물 상세 페이지로 이동하는 함수
-        function viewArticleDetail(article_id) {
-            window.location.href = 'article_detail.html?id=' + article_id;  // 게시물 ID를 URL 파라미터로 전달하여 상세 페이지로 이동
-        }
-
-    </script>
 </body>
 </html>

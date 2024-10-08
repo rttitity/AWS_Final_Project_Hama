@@ -12,9 +12,8 @@ var s3 = new AWS.S3({
 });
 
 // AWS API Gateway 설정 (Lambda와 연결)
-const apiGatewayUrl = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/User_Data"; // API Gateway URL User_data쿼리 api
-const lambdaUrl = 'https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/get_xconomy'; // API Gateway의 URL xconomy 쿼리 api
-
+const apiGatewayUrl = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/User_Data"; // User_Data API Gateway URL
+const lambdaUrl = 'https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/get_xconomy'; // 재화정보 RDS API Gateway의 URL
 
 // UUID 생성 함수 추가
 function uuidv4() {
@@ -35,18 +34,18 @@ function redirectToChangeProfile() {
     window.location.href = "./change_profile.html";
 }
 
-
-
+// 사용자 프로필 로드 함수 (프로필 페이지)
 function loadUserProfile() {
     getCurrentUserEmail(function(email) {
         document.getElementById('user-email').textContent = email;
 
-        // DynamoDB에서 사용자 프로필 이미지 URL, 코멘트 및 닉네임 가져오기
+        // DynamoDB에서 사용자 프로필 이미지 URL과 코멘트, article_id 가져오기
         fetch(`${apiGatewayUrl}?email=${email}`, {
             method: "GET",
         })
         .then(response => response.json())
         .then(data => {
+
             // 닉네임이 있으면 표시
             if (data.minecraft_username) {
                 document.getElementById('minecraft-username').textContent = data.minecraft_username;
@@ -74,22 +73,25 @@ function loadUserProfile() {
                 document.getElementById('minecraft-username').textContent = 'No username available';
             }
 
-            // 사용자 프로필 이미지가 있으면 그걸 사용, 없으면 기본 이미지 사용
             if (data.profileImageUrl) {
+                // 사용자 프로필 이미지가 있으면 그걸 사용
                 document.getElementById('profile-picture').src = data.profileImageUrl;
             } else {
+                // 프로필 이미지가 없으면 기본 이미지 사용
                 document.getElementById('profile-picture').src = "https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/User_Data/no_email/no_profile_image.png";
             }
 
             // 코멘트가 있으면 사용, 없으면 기본 메시지 출력
             document.getElementById('current-comment').textContent = data.profilecoment || "No comment available.";
+
+            // article_id를 로컬 스토리지에 저장 (로그인 후 유지)
+            if (data.article_id) {
+                localStorage.setItem('article_id', data.article_id);
+            }
         })
         .catch(error => console.error('Error fetching profile data:', error));
     });
 }
-
-
-
 
 // Game Start 및 Community 버튼 이벤트 처리 추가
 document.addEventListener("DOMContentLoaded", function() {
@@ -105,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             userDataButton.textContent = 'Login';
             userDataButton.onclick = function() {
-                window.location.href = '/login_page/login.html';
+                window.location.href = '../login_page/login.html';
             };
         }
     }
@@ -127,21 +129,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // weekly Ranking 버튼 처리
-    const RankingLink = document.getElementById('RankingLink');
-    if (RankingLink) {
-        RankingLink.addEventListener('click', function(event) {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (isLoggedIn !== 'true') {
-                event.preventDefault();
-                alert("로그인 후 이용해주세요");
-            } else {
-                window.location.href = '/Ranking_page/Ranking.html';
-            }
-        });
-    }
-
-
     // Community 버튼 처리
     const communityLink = document.getElementById('communityLink');
     if (communityLink) {
@@ -156,7 +143,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 로그아웃 버튼 처리
+    // Ranking 버튼 처리
+    const RankingLink = document.getElementById('RankingLink');
+    if (RankingLink) {
+        RankingLink.addEventListener('click', function(event) {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                event.preventDefault();
+                alert("로그인 후 이용해주세요");
+            } else {
+                window.location.href = '/Ranking_page/Ranking.html';
+            }
+        });
+    }
+
+    // 로그아웃 버튼 처리 (로그아웃 시 로컬 스토리지에서 article_id 제거)
     const logoutButton = document.querySelector('.logout_btn');
     if (logoutButton) {
         logoutButton.addEventListener("click", function() {
@@ -170,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                     cognitoUser.signOut(); // 사용자 로그아웃
                     localStorage.removeItem('isLoggedIn'); // 로컬스토리지에서 로그인 정보 제거
+                    localStorage.removeItem('article_id');  // article_id 제거
                     localStorage.removeItem('username');
                     window.location.href = 'index.html'; // 로그인 페이지로 리디렉션
                 });
@@ -246,18 +248,18 @@ window.onload = function() {
     }
 };
 
-
-
 function saveProfileChanges() {
     getCurrentUserEmail(function(email) {
         var files = document.getElementById("new_profile_image").files;
         var profileComment = document.getElementById("new_profile_comment").value;
+        var minecraftUsername = document.getElementById("minecraft-username-input").value; // Minecraft Username 가져오기
 
-        // 이미지가 선택되지 않았으면 경고
-        if (!files.length && !profileComment) {
-            return alert("Please upload a profile image or add a comment to save changes.");
+        // 이미지나 코멘트 또는 Minecraft Username이 없으면 경고
+        if (!files.length && !profileComment && !minecraftUsername) {
+            return alert("Please upload a profile image, add a comment, or enter your Minecraft username to save changes.");
         }
 
+        // 프로필 이미지가 선택된 경우 S3에 업로드
         if (files.length) {
             var file = files[0];
             var fileName = `User_Data/${email}/profile/${file.name}`;
@@ -276,7 +278,8 @@ function saveProfileChanges() {
             promise.then(
                 function(data) {
                     alert("Successfully uploaded profile image.");
-                    sendProfileDataToLambda(email, data.Location, profileComment);
+                    // Lambda로 데이터 전송하여 업데이트 처리
+                    updateProfileDataToLambda(email, data.Location, profileComment, minecraftUsername);
                 },
                 function(err) {
                     console.log("Error uploading profile image:", err);
@@ -284,44 +287,59 @@ function saveProfileChanges() {
                 }
             );
         } else {
-            sendProfileDataToLambda(email, null, profileComment);
+            // 이미지 업로드 없이 Lambda로 바로 데이터 전송하여 업데이트 처리
+            updateProfileDataToLambda(email, null, profileComment, minecraftUsername);
         }
     });
 }
 
-// Lambda로 프로필 데이터 전송
-function sendProfileDataToLambda(email, profileImageUrl, profileComment) {
-    const article_id = uuidv4(); // UUID로 article_id 생성
-    const Item = {
-        'article_id': article_id,  // article_id 추가
+// Lambda로 프로필 데이터 전송 (PUT 방식, UPDATE)
+function updateProfileDataToLambda(email, profileImageUrl, profileComment, minecraftUsername) {
+    const article_id = localStorage.getItem('article_id');  // 로컬 스토리지에서 article_id 가져오기
+
+    if (!article_id) {
+        alert('Error: Missing article_id');
+        return;
+    }
+
+    const data = {
+        'article_id': article_id,  // article_id를 사용하여 업데이트
         'email': email,
         'profileImageUrl': profileImageUrl || null,
         'profilecoment': profileComment || null,
+        'minecraft_username': minecraftUsername || null,  // Minecraft Username 추가
         'timestamp': new Date().toISOString()
     };
 
     fetch(apiGatewayUrl, {
-        method: "POST",
+        method: "PUT",  // POST 대신 PUT 방식 사용
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(Item)  // 데이터를 JSON으로 변환하여 전송
+        body: JSON.stringify(data)  // 데이터를 JSON으로 변환하여 전송
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => {
+                console.error("Error response from server:", err);
+                throw new Error("Server responded with an error: " + err.message);
+            });
+        }
+        return response.json();
+    })
     .then(data => {
         console.log("Success:", data);
-        alert("Profile changes saved successfully.");
-        window.location.href = '/main_page/user_data.html';  // 프로필 페이지로 리다이렉션
+        alert("Profile changes updated successfully.");
+        window.location.href = '/main_page/user_data.html';  // 프로필 페이지로 리디렉션
     })
     .catch((error) => {
         console.error("Error:", error);
-        alert("There was an error saving your profile changes.");
+        alert("There was an error updating your profile changes.");
     });
 }
 
-
-// 이미지 등록 시 파일이 선택되었을때 텍스트를 업데이트 하는 함수
+// 이미지 등록 시 파일이 선택되었을 때 텍스트를 업데이트 하는 함수
 function updateFileName() {
     const input = document.getElementById('new_profile_image');
     const fileNameDisplay = document.getElementById('file-name');
