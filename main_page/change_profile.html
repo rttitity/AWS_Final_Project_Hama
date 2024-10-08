@@ -10,8 +10,8 @@
 
     <header class="header">
         <div class="logo-nav">
-            <a href="../main_page/index.html" class="logo">
-              <img src="../img/minecraft_title.png" alt="Hama Logo" />
+            <a href="/main_page/index.html" class="logo">
+              <img src="/img/minecraft_title.png" alt="Hama Logo" />
             </a>
         </div>
         <div class="header-title">
@@ -19,8 +19,13 @@
         </div>
     </header>
 
-
     <div class="userdata_container">
+        <!-- Minecraft Username input field -->
+        <div class="minecraft-console">
+            <label for="minecraft-username-input">Minecraft Username</label>
+            <input type="text" id="minecraft-username-input" placeholder="Enter your Minecraft username">
+        </div>
+
         <div class="minecraft-console">
             <label for="title-input">Comment</label>
             <input type="text" id="new_profile_comment" placeholder="Please add your comment">
@@ -29,10 +34,9 @@
         <div class="minecraft-console">
             <label for="article-input">Picture</label>
             <div class="picture-box">
-                <label for="new_profile_image" class="custom-file-label"> <!-- 커스텀 파일 버튼 -->
+                <label for="new_profile_image" class="custom-file-label">
                     <img src="../img/Painting.webp" alt="Choose File" class="Painting-emoji">
                 </label>
-                <!-- 파일 선택 시 텍스트가 출력될 영역 -->
                 <span id="file-name" class="file-name">Please choose your image</span> 
                 <input type="file" id="new_profile_image" name="filename" accept="image/*" required onchange="updateFileName()"> <!-- onchange 이벤트 추가 -->
             </div>
@@ -45,7 +49,6 @@
             <button class="btn-cancel" onclick="window.location.href='../main_page/user_data.html';">Cancel</button>
         </div>
     </div>
-
 
     <script src="../login_page/aws-cognito-sdk.min.js"></script>
     <script src="../login_page/amazon-cognito-identity.min.js"></script>

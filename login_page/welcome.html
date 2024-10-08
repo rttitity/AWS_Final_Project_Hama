@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!!</title>
+    <link rel="stylesheet" type="text/css" href="/login_page/main.css">
+</head>
+<body>
+
+
+    <header class="header">
+        <div class="logo-nav">
+            <a href="/main_page/index.html" class="logo">
+              <img src="/img/minecraft_title.png" alt="Hama Logo" />
+            </a>
+        </div>
+        <div class="header-title">
+            <h1>Sign Up Success!!</h1>
+        </div>
+    </header>
+
+    <div class="welcome-container">        
+        <div id="article-detail">
+            <div class="article-box article-title-box">
+                <img src="/img/minecraft_welcome.png" id="article-image" src="" alt="게시물 이미지">
+            </div>
+
+            <div class="article-box article-content-box">
+                <img src="/img/welcome.webp" id="article-image" src="" alt="게시물 이미지">
+                <p id="article-content"></p>
+            </div>
+
+            <div class="article-box article-content-box">
+                <div class="minecraft-console">
+                    <label for="title-input">Your Minecraft Username</label>
+                    <input type="text" id="minecraft_username" placeholder="Please add your Minecraft Username">
+                </div>
+            </div>
+        </div>
+    </div>
+      
+    <div class="button_container">
+        <div class="wide-button-box">
+            <button class="btn-save" onclick="uploadMinecraftData();">Save Minecraft Username</button>
+        </div>
+        <div class="wide-button-box">
+            <button class="btn-cancel" onclick="window.location.href='/main_page/index.html';">Go to main page</button>
+        </div>
+    </div>
+
+    <script src="/login_page/aws-cognito-sdk.min.js"></script>
+    <script src="/login_page/amazon-cognito-identity.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1048.0.min.js"></script>
+    <script src="/login_page/main.js"></script>
+</body>
+</html>
