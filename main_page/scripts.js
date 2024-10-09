@@ -15,6 +15,84 @@ var s3 = new AWS.S3({
 const apiGatewayUrl = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/User_Data"; // User_Data API Gateway URL
 const lambdaUrl = 'https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/get_xconomy'; // 재화정보 RDS API Gateway의 URL
 
+
+// 세션 만료 시간: 3시간 (3시간 = 10800000 밀리초)
+// const SESSION_TIMEOUT = 3 * 60 * 60 * 1000;
+const SESSION_TIMEOUT = 60 ;
+
+// 로그인 상태 확인 및 로컬 스토리지 유효성 검사 
+document.addEventListener("DOMContentLoaded", function() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    
+    // 로그인 상태 확인 및 세션 검증
+    if (isLoggedIn !== 'true') {
+        // 사용자가 로그인되지 않은 상태일 때 로컬 스토리지 초기화 및 로그인 페이지로 리디렉션
+        localStorage.removeItem('article_id');
+        localStorage.removeItem('username');
+        localStorage.removeItem('isLoggedIn');
+        alert("세션이 만료되었습니다. 다시 로그인해 주세요.");
+    } else {
+        // 로그인된 상태일 때만 사용자 프로필 로드
+        main();
+    }
+});
+
+// 세션 만료 시간 설정
+function setSessionTimeout() {
+    const loginTime = new Date().getTime(); // 현재 시간 (밀리초)
+    const sessionExpiryTime = loginTime + SESSION_TIMEOUT; // 3시간 후 만료 시간 계산
+
+    // 로컬 스토리지에 세션 만료 시간을 저장
+    localStorage.setItem('sessionExpiry', sessionExpiryTime);
+
+    // 만료 시간에 따라 타이머 설정
+    checkSessionExpiry();
+}
+
+// 세션 만료 확인 함수 (3시간 동안 활동이 없으면 만료 처리)
+function checkSessionExpiry() {
+    const sessionExpiryTime = localStorage.getItem('sessionExpiry');
+    if (!sessionExpiryTime) return; // 만료 시간이 없으면 종료
+
+    const currentTime = new Date().getTime();
+
+    // 만료 시간이 지난 경우 로그아웃 처리
+    if (currentTime > sessionExpiryTime) {
+        handleSessionExpiry();
+    } else {
+        // 세션이 만료되지 않았으면 만료 시점까지 타이머 재설정
+        const timeRemaining = sessionExpiryTime - currentTime;
+        setTimeout(handleSessionExpiry, timeRemaining);
+    }
+}
+
+// 세션 만료 처리 함수
+function handleSessionExpiry() {
+    alert('세션이 만료되었습니다. 다시 로그인해 주세요.');
+
+    // 로컬 스토리지에서 로그인 관련 정보 제거
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+    localStorage.removeItem('article_id');
+    localStorage.removeItem('sessionExpiry');
+
+    // 로그아웃 처리를 위해 페이지 리디렉션
+    window.location.href = 'login.html';
+}
+
+// 사용자 활동 시 세션 시간을 리셋하는 함수 (활동이 있으면 세션 만료 시간 갱신)
+function resetSessionTimeout() {
+    const currentTime = new Date().getTime();
+    const sessionExpiryTime = currentTime + SESSION_TIMEOUT;
+    localStorage.setItem('sessionExpiry', sessionExpiryTime);
+}
+
+// 사용자 활동을 감지하여 세션을 리셋하는 이벤트 리스너
+document.addEventListener('click', resetSessionTimeout); // 클릭 시 세션 리셋
+document.addEventListener('keydown', resetSessionTimeout); // 키보드 입력 시 세션 리셋
+
+
+
 // UUID 생성 함수 추가
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
