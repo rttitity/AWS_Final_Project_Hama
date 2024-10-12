@@ -17,8 +17,7 @@
     align-items: center;
     width: 100%;
     padding: 5vh; /* vh(viewport height) 단위를 사용하여 화면의 10%에 해당하는 높이로 설정 */
-    background-color: rgba(0, 0, 0, 0); /* 배경 투명도 80% */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 투명도 10% */
+
 }
 
 .logo-nav {

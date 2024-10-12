@@ -7,7 +7,7 @@ const articlesPerPage = 10;
 let article_arr = [];
 
 // API Gateway에서 제공되는 URL
-const rankURL = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/Ranking";
+const rankURL = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/Ranking_to_Seok";
 
 
 // 플레이어 랭킹을 가져오는 함수
