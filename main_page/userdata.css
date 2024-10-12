@@ -668,6 +668,7 @@ body {
     padding: 20px; /* 텍스트와 이미지 간격 확보 */
 }
 
+
 .server-img {
     flex: 0 0 250px; /* 고정된 가로 크기 */
     width: 250px;
