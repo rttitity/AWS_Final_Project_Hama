@@ -34,7 +34,6 @@ html {
 	font: 12pt 'Minecraftia', sans-serif; 
 }
 
-
 body {
 	height: 100vh;
 	@include flex-center-hv;
