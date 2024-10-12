@@ -13,7 +13,7 @@ var s3 = new AWS.S3({
 
 // AWS API Gateway 설정 (Lambda와 연결)
 const apiGatewayUrl = "https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/User_Data"; // User_Data API Gateway URL
-const lambdaUrl = 'https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/get_xconomy'; // 재화정보 RDS API Gateway의 URL
+const lambdaUrl = 'https://0wry6xpjlb.execute-api.ap-northeast-2.amazonaws.com/hama-web-api-page/get_xconomy_Seok'; // 재화정보 RDS API Gateway의 URL
 
 // UUID 생성 함수 추가
 function uuidv4() {

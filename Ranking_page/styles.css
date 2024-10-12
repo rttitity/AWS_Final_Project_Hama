@@ -115,15 +115,18 @@ ul#rankings > li:hover {
 }
 
 /* 게시물 목록 스타일 */
-.ranking-item {
+.ranking-view-content {
     display: flex;
-    align-items: center;  /* 세로 중앙 정렬 */
+    flex-direction: column; /* 요소들을 세로로 나열 */
+    align-items: flex-start;  /* 왼쪽 정렬 */
     margin-bottom: 10px;  /* 각 게시물 간 여백 */
     color: #ddd;  /* 텍스트 색상 */
+    padding-left: 20px;
 }
 
+
 /* 게시물 목록 이미지 스타일 */
-.article-image {
+.ranking-image {
     width: 100px;
     height: 100px;
     object-fit: cover;
@@ -132,11 +135,11 @@ ul#rankings > li:hover {
 }
 
 /* 게시물 콘텐츠 스타일 */
-.article-view-content h3 {
+.ranking-view-content h3 {
     margin: 0;
 }
 
-.article-view-content p {
+.ranking-view-content p {
     margin: 5px 0;
     color: #444;
 }
