@@ -410,13 +410,11 @@ ul#articles > li:hover {
     background-size: auto 50px; /* 세로는 150px로 고정하고 가로는 비율에 맞게 자동 조정 */
     background-size: contain; /* 이미지 비율을 유지하면서 박스에 맞게 조정 */
     background-size: 100% 100%; /* 이미지가 박스 크기에 맞게 조정됨 */
-    background-image: url('./img/Book_title.png');
     text-align: center;
 }
 
 .article-content-box {
     background-size: cover; /* 이미지가 박스 크기에 맞게 조정됨 */
-    background-image: url('./img/Book_middle.png');
     text-align: center;
 }
 
@@ -435,20 +433,19 @@ ul#articles > li:hover {
 #article-detail h2 {
     font-size: 24px;
     margin-bottom: 15px;
-    color: #333;
+    color: #ffffff;
 }
 
 
 #article-detail p {
     font-size: 18px;
     line-height: 1.6;
-    color: #666;
+    color: #ffffff;
 }
 
 .article-endline-box {
     background-size: auto 66px; /* 세로는 150px로 고정하고 가로는 비율에 맞게 자동 조정 */
     background-size: cover; /* 이미지가 박스 크기에 맞게 조정됨 */
-    background-image: url('./img/Book_end66.png');
     text-align: center;
 }
 

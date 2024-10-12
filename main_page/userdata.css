@@ -630,3 +630,94 @@ body {
     width: 100%; 
     margin: 0 auto;
 }
+
+
+.guide_container {
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.5); /* 배경 투명도 80% */
+    padding: 20px; /* 내부 요소에 여백 추가 */
+
+    /* Flexbox로 내부 요소를 중앙 정렬 */
+    display: flex;
+    flex-direction: column; /* 요소들을 세로로 정렬 */
+    justify-content: center; /* 세로 중앙 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+}
+
+.guide-section {
+    width: 100%;
+    max-width: 1200px; /* 최대 너비 제한 */
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.5); /* 배경 투명도 50% */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* 내부 요소에 여백 추가 */
+    overflow: hidden; /* 요소가 삐져나오는 것을 방지 */	
+}
+
+.server-box {
+    display: flex;
+    flex-wrap: wrap; /* 작은 화면에서 레이아웃이 깨지지 않도록 줄바꿈 */
+    width: 100%; /* 부모 요소의 전체 너비 */
+    max-width: 100%; /* 부모 요소를 넘지 않도록 제한 */
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px; /* 텍스트와 이미지 간격 확보 */
+}
+
+.server-img {
+    flex: 0 0 250px; /* 고정된 가로 크기 */
+    width: 250px;
+    height: 150px;
+    object-fit: cover; /* 이미지를 박스에 맞게 자르면서 비율 유지 */
+    margin-right: 20px; /* 이미지와 텍스트 사이에 간격 추가 */
+}
+
+.server-info {
+    flex: 1; /* 나머지 공간을 차지하도록 설정 */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.server-info h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5em; /* 적절한 글자 크기 */
+}
+
+.server-info p {
+    margin-top: 10px;
+    color: #666;
+    line-height: 1.6;
+    font-size: 1em; /* 글자 크기 조정 */
+}
+
+/* 반응형 디자인 추가 */
+@media (max-width: 768px) {
+    .server-box {
+        flex-direction: column; /* 작은 화면에서는 세로 정렬 */
+        align-items: center; /* 중앙 정렬 */
+    }
+
+    .server-img {
+        width: 100%; /* 이미지가 가득 차도록 */
+        height: auto; /* 높이는 자동으로 조정 */
+        margin-right: 0; /* 간격 제거 */
+        margin-bottom: 10px; /* 이미지와 텍스트 사이에 간격 추가 */
+    }
+
+    .server-info {
+        padding: 10px;
+        text-align: center; /* 텍스트 중앙 정렬 */
+    }
+}
+
+.registry-instructions {
+	font-family: 'Minecraftia', sans-serif;
+    font-size: 1.5em;
+}

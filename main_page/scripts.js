@@ -350,3 +350,22 @@ function updateFileName() {
         fileNameDisplay.textContent = 'Please choose your image'; // 파일이 없을 경우 기본 메시지
     }
 }
+
+// 다운로드 버튼 클릭 시 실행되는 함수
+function filterRankings() {
+    // S3 버킷의 레지스트리 파일 URL
+    const s3Url = "https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/Download_Hama_Registry_File/minecraft.reg";
+
+    // 다운로드 동작을 위한 a 태그 생성
+    const anchor = document.createElement('a');
+    anchor.href = s3Url;
+    anchor.download = 'Hama_launcher.reg';  // 다운로드할 파일 이름 (원하는 경우 확장자까지 지정 가능)
+    document.body.appendChild(anchor);  // a 태그를 body에 추가
+    anchor.click();  // 파일 다운로드 트리거
+    document.body.removeChild(anchor);  // 다운로드가 완료되면 a 태그 삭제
+}
+
+// 페이지 로드 후 필요한 초기화 작업이 있으면 여기에 추가할 수 있습니다.
+window.onload = function() {
+    console.log("Page loaded. Ready to download registry file.");
+}

@@ -41,7 +41,7 @@
         <!-- Double Button -->
         <div class="double">
           <div class="mc-button full">
-            <div class="title">Server Guide</div>
+            <div class="title" onclick="window.location.href='/main_page/server_guide.html';">Server Guide</div>
           </div>
           <div class="mc-button full">
             <div class="title" id="userDataButton" onClick="goToUserData()">Login</div>
@@ -55,6 +55,31 @@
           </div>
         </div>
       </div>
-
 </body>
+<script>
+  // 이미지 배열 - S3 버킷에서 불러올 이미지 경로 목록
+const imageArray = [
+    "https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/farm.png",
+    "https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/wild.png",
+    "https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/lobby.png",
+    "https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/lobby_sunset.png",
+    "https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/fish.png",
+    "https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/fish_midnight.png"
+];
+
+// 랜덤하게 이미지를 선택하는 함수
+function getRandomImage() {
+    const randomIndex = Math.floor(Math.random() * imageArray.length);
+    return imageArray[randomIndex];
+}
+
+// 선택한 이미지를 배경으로 설정
+function setRandomBackground() {
+    const randomImage = getRandomImage();
+    document.body.style.backgroundImage = `url('${randomImage}')`;
+}
+
+// 페이지가 로드될 때 배경 설정
+window.onload = setRandomBackground;
+</script>
 </html>

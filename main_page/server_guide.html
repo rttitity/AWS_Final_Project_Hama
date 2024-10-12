@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Guide</title>
+    <link rel="stylesheet" type="text/css" href="/main_page/userdata.css">
+</head>
+<body>
+
+
+    <header class="header">
+        <div class="logo-nav">
+            <a href="/main_page/index.html" class="logo">
+              <img src="/img/minecraft_title.png" alt="Hama Logo" />
+            </a>
+        </div>
+        <div class="header-title">
+            <h1>Hama Server Guide</h1>
+        </div>
+    </header>
+
+
+    <div class="guide_container">
+        <div class="profile-main-container">
+            <section class="guide-section">
+
+                <!-- Lobby 서버 소개 -->
+                <div class="server-box">
+                    <img src="https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/lobby.png" alt="Lobby Server Image" class="server-img">
+                    <div class="server-info">
+                        <h2>Lobby Server</h2>
+                        <p>처음 접속하는 서버로, 광장에서 다른 플레이어와 소통하고 거래를 할 수 있습니다. 물물교환, 상점 시스템을 통해 재화를 거래하고 서버의 중심이 되는 공간입니다.</p>
+                    </div>
+                </div>
+
+                <!-- Farm 서버 소개 -->
+                <div class="server-box">
+                    <img src="https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/farm.png" alt="Farm Server Image" class="server-img">
+                    <div class="server-info">
+                        <h2>Farm Server</h2>
+                        <p>개인 농장을 가꾸고 다양한 농작물을 재배할 수 있는 서버입니다. 수확한 농작물은 서버 내에서 화폐로 교환할 수 있어 경제활동의 중요한 역할을 합니다.</p>
+                    </div>
+                </div>
+
+                <!-- Fish 서버 소개 -->
+                <div class="server-box">
+                    <img src="https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/fish.png" alt="Fish Server Image" class="server-img">
+                    <div class="server-info">
+                        <h2>Fish Server</h2>
+                        <p>물고기를 낚을 수 있는 서버로, 낚은 물고기를 화폐로 교환해 다양한 경제활동에 참여할 수 있습니다. 낚시를 통해 다양한 물고기를 수집할 수 있습니다.</p>
+                    </div>
+                </div>
+
+                <!-- Wild 서버 소개 -->
+                <div class="server-box">
+                    <img src="https://hama-web-bucket.s3.ap-northeast-2.amazonaws.com/server_guide/wild.png" alt="Wild Server Image" class="server-img">
+                    <div class="server-info">
+                        <h2>Wild Server</h2>
+                        <p>마인크래프트의 정통 야생 모드 서버로, 플레이어는 생존을 목표로 게임을 진행합니다. 자원을 모아 생존 전략을 세우고, 끝없이 확장되는 세계를 탐험할 수 있습니다.</p>
+                    </div>
+                </div>                      
+            </section>
+        </div>    
+    </div>
+
+
+    <div class="button_container">
+        <div class="wide-button-box">
+            <button class="btn-download" onclick="filterRankings()">Download Registry File</button>
+            <button class="btn-cancel" onclick="window.location.href='../main_page/index.html';">Cancel</button>
+        </div>      
+    </div>
+
+    <script src="/login_page/aws-cognito-sdk.min.js"></script>
+    <script src="/login_page/amazon-cognito-identity.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1048.0.min.js"></script>
+    <script src="/main_page/scripts.js"></script>
+</body>
+</html>

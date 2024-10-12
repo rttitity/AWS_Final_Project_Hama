@@ -44,7 +44,7 @@ body {
     height: 100%;
 	flex-direction: column;
 	background-color: #fff;
-	background-image: url('https://i.ibb.co/bH3JY30/IE1G7Lr.png');
+	
 	background-size: cover;
 	background-position: center;
 	position: relative;
@@ -221,13 +221,3 @@ body, html {
 
 
 
-/* ---- 기본 컨테이너 틀 ---- */
-
-.userdata_container {
-    width: 100%;
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.5); /* 배경 투명도 80% */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* 내부 요소에 여백 추가 */
-
-}
