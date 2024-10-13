@@ -120,7 +120,9 @@ function ConfirmRegistration() {
         .then(response => response.json())
         .then(data => {
             console.log("Success:", data);
-            window.location.href = 'welcome.html'; // 확인 후 리디렉션
+            alert("회원가입 성공!! 다시 로그인 해주세요.");
+
+            window.location.href = 'login.html'; // 확인 후 리디렉션
         })
         .catch((error) => {
             console.error("Error:", error);
